@@ -30,8 +30,8 @@ export default class navbar extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Title</NavbarBrand>
+        <Navbar color="white" light expand="md">
+          <NavbarBrand href="/">EDC</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
