@@ -38,13 +38,26 @@ export default class show_data_test extends Component {
       <div>
         <h1 className="title">Thai ID</h1>
         <Row>
-          <Col xs="6">.col-6</Col>
+          <Col xs="6">
+          </Col>
+
           <Col xs="6">
             <Form>
-              <Row form>
-                <Col md={6}>
+
+{/* -----------ID Card---------- */}
+              <FormGroup>
+                <Label for="exampleAddress">Indetification Number</Label>
+                <Input
+                  type="text"
+                  name="address"
+                  id="exampleAddress"
+                />
+              </FormGroup>
+{/* -----------Name---------- */}
+            <Row>
+            <Col md={6}>
                   <FormGroup>
-                    <Label for="firstNmarThai">ชื่อ (ไทย)</Label>
+                    <Label for="firstNmarThai">ชื่อ (ภาษาไทย)</Label>
                     <Input
                       type="text"
                       name="firstNmarThai"
@@ -54,61 +67,62 @@ export default class show_data_test extends Component {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="examplePassword"></Label>
+                    <Label for="examplePassword">นามสกุล (ภาษาไทย)</Label>
                     <Input
                       type="password"
                       name="password"
                       id="examplePassword"
-                      placeholder="password placeholder"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="firstNmarThai">Name (English)</Label>
+                    <Input
+                      type="text"
+                      name="firstNmarThai"
+                      id="firstNmarThai"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="examplePassword">Sername (English)</Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="examplePassword"
                     />
                   </FormGroup>
                 </Col>
               </Row>
+{/* -----------Address---------- */}
               <FormGroup>
-                <Label for="exampleAddress">Address</Label>
+                <Label for="exampleAddress">ที่อยู่</Label>
                 <Input
                   type="text"
                   name="address"
                   id="exampleAddress"
-                  placeholder="1234 Main St"
                 />
               </FormGroup>
-              <FormGroup>
-                <Label for="exampleAddress2">Address 2</Label>
-                <Input
-                  type="text"
-                  name="address2"
-                  id="exampleAddress2"
-                  placeholder="Apartment, studio, or floor"
-                />
-              </FormGroup>
+{/* -----------Birth---------- */}
               <Row form>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="exampleCity">City</Label>
+                    <Label for="exampleCity">Date of Birth</Label>
                     <Input type="text" name="city" id="exampleCity" />
                   </FormGroup>
                 </Col>
-                <Col md={4}>
+{/* -----------Expiry---------- */}
+                <Col md={6}>
                   <FormGroup>
-                    <Label for="exampleState">State</Label>
-                    <Input type="text" name="state" id="exampleState" />
-                  </FormGroup>
-                </Col>
-                <Col md={2}>
-                  <FormGroup>
-                    <Label for="exampleZip">Zip</Label>
-                    <Input type="text" name="zip" id="exampleZip" />
+                    <Label for="exampleCity">Date of Expiry</Label>
+                    <Input type="text" name="city" id="exampleCity" />
                   </FormGroup>
                 </Col>
               </Row>
-              <FormGroup check>
-                <Input type="checkbox" name="check" id="exampleCheck" />
-                <Label for="exampleCheck" check>
-                  Check me out
-                </Label>
-              </FormGroup>
-              <Button>Sign in</Button>
+
+              {/* <Button>Sign in</Button> */}
             </Form>
           </Col>
         </Row>
