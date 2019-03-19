@@ -30,7 +30,7 @@ export default class navbar extends Component {
   render() {
     return (
       <div>
-        <Navbar color="white" light expand="md">
+        <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">Title</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
