@@ -38,7 +38,14 @@ export default class show_data_test extends Component {
       <div>
         <h1 className="title">Thai ID</h1>
         <Row>
-          <Col xs="6">.col-6</Col>
+          <Col xs="6">
+            <div className="show-img">
+              <img
+                src="https://static.naewna.com/uploads/news/source/332193.jpg"
+                alt="imag"
+              />
+            </div>
+          </Col>
           <Col xs="6">
             <Form>
               <Row form>
@@ -54,7 +61,7 @@ export default class show_data_test extends Component {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="examplePassword"></Label>
+                    <Label for="examplePassword" />
                     <Input
                       type="password"
                       name="password"
