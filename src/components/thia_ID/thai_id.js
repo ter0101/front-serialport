@@ -3,23 +3,14 @@ import axios from 'axios'
 
 import './thai_id.css'
 import '../../App.css'
-import {
-  Row,
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from 'reactstrap'
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default class show_data_test extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      data: null
+      data: []
     }
 
     this.getDataFromServer()
@@ -28,95 +19,131 @@ export default class show_data_test extends Component {
   getDataFromServer = () => {
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result)
-      this.setState({ data: result.data.data })
+      this.setState({ data: result.data })
     })
   }
 
   render() {
     const { data } = this.state
+    console.log(data)
     return (
       <div>
         <h1 className="title">Thai ID</h1>
         <Row>
           <Col xs="6">
-            <div className="show-img">
-              <img
-                src="https://static.naewna.com/uploads/news/source/332193.jpg"
-                alt="imag"
-              />
-            </div>
+            <img
+              src="https://static.naewna.com/uploads/news/source/332193.jpg"
+              alt="img"
+            />
           </Col>
           <Col xs="6">
-            <Form>
-              <Row form>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for="firstNmarThai">ชื่อ (ไทย)</Label>
-                    <Input
-                      type="text"
-                      name="firstNmarThai"
-                      id="firstNmarThai"
-                    />
-                  </FormGroup>
-                </Col>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for="examplePassword" />
-                    <Input
-                      type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="password placeholder"
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <FormGroup>
-                <Label for="exampleAddress">Address</Label>
-                <Input
-                  type="text"
-                  name="address"
-                  id="exampleAddress"
-                  placeholder="1234 Main St"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleAddress2">Address 2</Label>
-                <Input
-                  type="text"
-                  name="address2"
-                  id="exampleAddress2"
-                  placeholder="Apartment, studio, or floor"
-                />
-              </FormGroup>
-              <Row form>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for="exampleCity">City</Label>
-                    <Input type="text" name="city" id="exampleCity" />
-                  </FormGroup>
-                </Col>
-                <Col md={4}>
-                  <FormGroup>
-                    <Label for="exampleState">State</Label>
-                    <Input type="text" name="state" id="exampleState" />
-                  </FormGroup>
-                </Col>
-                <Col md={2}>
-                  <FormGroup>
-                    <Label for="exampleZip">Zip</Label>
-                    <Input type="text" name="zip" id="exampleZip" />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <FormGroup check>
-                <Input type="checkbox" name="check" id="exampleCheck" />
-                <Label for="exampleCheck" check>
-                  Check me out
-                </Label>
-              </FormGroup>
-              <Button>Sign in</Button>
-            </Form>
+            {data.map(result => (
+              <Form key={result.type}>
+                {/* -----------ID Card---------- */}
+                <FormGroup>
+                  <Label for="Indetification">Indetification Number</Label>
+                  <Input
+                    type="text"
+                    name="address"
+                    id="Indetification"
+                    value={result.data.firstname}
+                    readOnly
+                  />
+                </FormGroup>
+                {/* -----------Name---------- */}
+                <Row>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="firstNmarThai">ชื่อ (ภาษาไทย)</Label>
+                      <Input
+                        type="text"
+                        name="firstNmarThai"
+                        id="firstNmarThai"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="SernameThai">นามสกุล (ภาษาไทย)</Label>
+                      <Input
+                        type="text"
+                        name="SernameThai"
+                        id="SernameThai"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="firstNmarEng">Name (English)</Label>
+                      <Input
+                        type="text"
+                        name="firstNmarEng"
+                        id="firstNmarEng"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="SernameEng">Sername (English)</Label>
+                      <Input
+                        type="text"
+                        name="SernameEng"
+                        id="SernameEng"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                {/* -----------Address---------- */}
+                <FormGroup>
+                  <Label for="exampleAddress">ที่อยู่</Label>
+                  <Input
+                    type="text"
+                    name="address"
+                    id="exampleAddress"
+                    value={result.data.firstname}
+                    readOnly
+                  />
+                </FormGroup>
+                {/* -----------Birth---------- */}
+                <Row form>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="Birth">Date of Birth</Label>
+                      <Input
+                        type="text"
+                        name="Birth"
+                        id="Birth"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                  {/* -----------Expiry---------- */}
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="Expiry">Date of Expiry</Label>
+                      <Input
+                        type="text"
+                        name="Expiry"
+                        id="Expiry"
+                        value={result.data.firstname}
+                        readOnly
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                {/* <Button>Sign in</Button> */}
+              </Form>
+            ))}
           </Col>
         </Row>
       </div>
