@@ -5,8 +5,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
+  // NavItem,
+  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -30,14 +30,14 @@ export default class navbar extends Component {
   render() {
     return (
       <div>
-        <Navbar color="white" light expand="md">
+        <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">EDC</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/thai-id">ThaiID</NavLink>
-              </NavItem>
+              {/* <NavItem>
+                  <NavLink href="/thai-id">ThaiID</NavLink>
+                </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

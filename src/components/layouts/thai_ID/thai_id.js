@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import './thai_id.css'
-import '../../App.css'
+import '../../../App.css'
 import { Alert, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default class show_data_test extends Component {
@@ -12,7 +12,6 @@ export default class show_data_test extends Component {
     this.state = {
       data: []
     }
-
     this.getDataFromServer()
   }
 
@@ -25,7 +24,6 @@ export default class show_data_test extends Component {
 
   render() {
     const { data } = this.state
-    console.log(data)
     return (
       <div>
         <h1 className="title">Thai ID</h1>
@@ -145,9 +143,7 @@ export default class show_data_test extends Component {
                 </Form>
               ))
             ) : (
-              <Alert color="danger">
-                Don't have any data
-              </Alert>
+              <Alert color="danger">Don't have any data</Alert>
             )}
           </Col>
         </Row>

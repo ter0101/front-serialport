@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'reactstrap'
 
-import ThaiID from './components/thia_ID/thai_id'
-import Home from './components/home'
+import Home from './components/layouts/home/home'
+import Camera from './components/layouts/camera/camera'
+import ThaiID from './components/layouts/thai_ID/thai_id'
+import ScanQR from './components/layouts/scanqr/scanqr'
 import Navbar from './components/navbar'
 
 class App extends Component {
   render() {
     return (
       <Router>
+        <Navbar />
         <Container>
-          <Navbar />
-          <div className="content">
+          <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/thai-id" component={ThaiID} />
-          </div>
+            <Route path="/thai-id" component={ThaiID} />
+            <Route path="/camera" component={Camera} />
+            <Route path="/scan-qr" component={ScanQR} />
+          </Switch>
         </Container>
       </Router>
     )
