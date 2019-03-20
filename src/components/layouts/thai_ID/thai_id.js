@@ -11,14 +11,16 @@ export default class show_data_test extends Component {
     super(props)
 
     this.state = {
-      data: [],
+      data:'',
       img64: '',
       text64: ''
     }
-    this.getDataFromServer()
+    setTimeout(this.getDataFromServer, 3000)
   }
 
   getDataFromServer = () => {
+    this.setState({data: 'มาแล้ว'})
+    console.log('run')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)
       this.setState({ img64: result.data.img64, text64: result.data.text64 })
@@ -26,23 +28,21 @@ export default class show_data_test extends Component {
   }
 
   render() {
-    const { data, img64, text64 } = this.state
-    const Img = "data:image/png;base64," + img64
+    const { data,img64, text64 } = this.state
+    const Img = 'data:image/png;base64,' + img64
     const Text = Buffer.from(text64, 'base64').toString()
     var TextArray = Text.split(':')
 
     return (
       <div>
-        <h1 className="title">Thai ID</h1>
+        <h1 className="title">Thai ID{data}</h1>
         <Row>
           <Col xs="6">
-            {img64 !== '' ? (<img
-              src={Img}
-              alt="img"
-            />) : (<img
-              src={defaultImg}
-              alt="img" />)
-            }
+            {img64 !== '' ? (
+              <img src={Img} alt="img" />
+            ) : (
+              <img src={defaultImg} alt="img" />
+            )}
           </Col>
           <Col xs="6">
             <Form>
@@ -60,18 +60,20 @@ export default class show_data_test extends Component {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={6}><FormGroup>
-                  <Label for="Birth">Date of Birth</Label>
-                  <Input
-                    type="text"
-                    name="Birth"
-                    id="Birth"
-                    value={TextArray[4]}
-                    readOnly
-                  />
-                </FormGroup></Col></Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Birth">Date of Birth</Label>
+                    <Input
+                      type="text"
+                      name="Birth"
+                      id="Birth"
+                      value={TextArray[4]}
+                      readOnly
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
               {/* -----------Name---------- */}
-
               <FormGroup>
                 <Label for="firstNmarThai">ชื่อ-นามสกุล(ภาษาไทย)</Label>
                 <Input
@@ -82,9 +84,6 @@ export default class show_data_test extends Component {
                   readOnly
                 />
               </FormGroup>
-
-
-
               <FormGroup>
                 <Label for="firstNmarEng">Name (English)</Label>
                 <Input
@@ -95,9 +94,6 @@ export default class show_data_test extends Component {
                   readOnly
                 />
               </FormGroup>
-
-
-
               {/* -----------Address---------- */}
               <FormGroup>
                 <Label for="exampleAddress">ที่อยู่</Label>
