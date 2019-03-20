@@ -29,6 +29,8 @@ export default class show_data_test extends Component {
     const { data, img64, text64 } = this.state
     const Img = "data:image/png;base64," + img64
     const Text = Buffer.from(text64, 'base64').toString()
+    var TextArray = Text.split(':')
+
     return (
       <div>
         <h1 className="title">Thai ID</h1>
@@ -43,7 +45,101 @@ export default class show_data_test extends Component {
             }
           </Col>
           <Col xs="6">
-            <p>{Text}</p>
+            <Form>
+              {/* -----------ID Card---------- */}
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Indetification">Indetification Number</Label>
+                    <Input
+                      type="text"
+                      name="address"
+                      id="Indetification"
+                      value={TextArray[0]}
+                      readOnly
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}><FormGroup>
+                  <Label for="Birth">Date of Birth</Label>
+                  <Input
+                    type="text"
+                    name="Birth"
+                    id="Birth"
+                    value={TextArray[4]}
+                    readOnly
+                  />
+                </FormGroup></Col></Row>
+              {/* -----------Name---------- */}
+
+              <FormGroup>
+                <Label for="firstNmarThai">ชื่อ-นามสกุล(ภาษาไทย)</Label>
+                <Input
+                  type="text"
+                  name="firstNmarThai"
+                  id="firstNmarThai"
+                  value={TextArray[1]}
+                  readOnly
+                />
+              </FormGroup>
+
+
+
+              <FormGroup>
+                <Label for="firstNmarEng">Name (English)</Label>
+                <Input
+                  type="text"
+                  name="firstNmarEng"
+                  id="firstNmarEng"
+                  value={TextArray[2]}
+                  readOnly
+                />
+              </FormGroup>
+
+
+
+              {/* -----------Address---------- */}
+              <FormGroup>
+                <Label for="exampleAddress">ที่อยู่</Label>
+                <Input
+                  type="textarea"
+                  name="address"
+                  id="exampleAddress"
+                  value={TextArray[3]}
+                  readOnly
+                />
+              </FormGroup>
+              {/* -----------Birth---------- */}
+              <Row form>
+                {/* -----------Issue---------- */}
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Expiry">Date of Issue</Label>
+                    <Input
+                      type="text"
+                      name="Expiry"
+                      id="Expiry"
+                      value={TextArray[6]}
+                      readOnly
+                    />
+                  </FormGroup>
+                </Col>
+                {/* -----------Expiry---------- */}
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Expiry">Date of Expiry</Label>
+                    <Input
+                      type="text"
+                      name="Expiry"
+                      id="Expiry"
+                      value={TextArray[7]}
+                      readOnly
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              {/* <Button>Sign in</Button> */}
+            </Form>
           </Col>
         </Row>
       </div>
