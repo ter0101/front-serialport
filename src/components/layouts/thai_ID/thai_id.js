@@ -39,9 +39,9 @@ export default class show_data_test extends Component {
         <Row>
           <Col xs="6">
             {img64 !== '' ? (
-              <img src={Img} alt="img" />
+              <img className="img-thaiid" src={Img} alt="img" />
             ) : (
-              <img src={defaultImg} alt="img" />
+              <img className="img-thaiid" src={defaultImg} alt="img" />
             )}
           </Col>
           <Col xs="6">
