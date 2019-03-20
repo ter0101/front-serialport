@@ -15,11 +15,11 @@ export default class show_data_test extends Component {
       img64: '',
       text64: ''
     }
-    setTimeout(this.getDataFromServer, 3000)
+    setTimeout(this.getDataFromServer, 13000)
   }
 
   getDataFromServer = () => {
-    this.setState({data: 'มาแล้ว'})
+    this.setState({data:''})
     console.log('run')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)

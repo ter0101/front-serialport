@@ -17,7 +17,16 @@ import './camera.css'
 export default class camera extends Component {
   state = {
     redirect: false,
-    command: ''
+    command: '',
+    img64: ''
+  }
+
+  getDataFromServer = () => {
+    console.log('run')
+    axios.get('/api/getData').then(result => {
+      console.log('DATA:', result.data)
+      this.setState({ img64: result.data.img64 })
+    })
   }
 
   writeDataToDevice = e => {
@@ -31,15 +40,23 @@ export default class camera extends Component {
     })
     console.log('COMMAND:', command.text)
   }
+
+
+
   render() {
+    const { img64,  } = this.state
+    const Img = 'data:image/png;base64,' + img64
     return (
       <div>
         <h1 className="title">Camera</h1>
         <Button color="success" onClick={this.writeDataToDevice} value="a02">
-          Take Picture
+        Take Picture
+        </Button>
+        <Button color="success" onClick={this.getDataFromServer} value="a02">
+          Read
         </Button>
         <img
-          src="https://static.naewna.com/uploads/news/source/332193.jpg"
+          src={Img}
           alt="img"
           className="camera-img"
         />
