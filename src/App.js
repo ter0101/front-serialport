@@ -6,6 +6,7 @@ import Home from './components/layouts/home/home'
 import Camera from './components/layouts/camera/camera'
 import ThaiID from './components/layouts/thai_ID/thai_id'
 import ScanQR from './components/layouts/scanqr/scanqr'
+import MagneticCard from './components/layouts/magnetic-card/magnetic-card'
 import Navbar from './components/navbar'
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/thai-id" component={ThaiID} />
             <Route path="/camera" component={Camera} />
             <Route path="/scan-qr" component={ScanQR} />
+            <Route path="/magnetic-card" component={MagneticCard} />
           </Switch>
         </Container>
       </Router>

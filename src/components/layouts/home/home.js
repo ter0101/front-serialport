@@ -39,6 +39,9 @@ export default class home extends Component {
     if (redirect && command === 'a03') {
       return <Redirect to="/scan-qr" />
     }
+    if (redirect && command === 'a10') {
+      return <Redirect to="/magnetic-card" />
+    }
   }
 
   render() {

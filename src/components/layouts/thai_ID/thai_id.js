@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import './thai_id.css'
 import '../../../App.css'
-import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import defaultImg from '../../../asset/user.png'
 
 export default class show_data_test extends Component {
@@ -34,13 +34,22 @@ export default class show_data_test extends Component {
     return (
       <div>
         <h1 className="title">Thai ID</h1>
+        <br />
         <Row>
-          <Col xs="6">
+          <Col xs="6" style={{ textAlign: 'center' }}>
             {img64 !== '' ? (
               <img className="img-thaiid" src={Img} alt="img" />
             ) : (
               <img className="img-thaiid" src={defaultImg} alt="img" />
             )}
+            <div>
+              <Button
+                className="card-button button-read"
+                onClick={this.getDataFromServer}
+              >
+                อ่านข้อมูล
+              </Button>
+            </div>
           </Col>
           <Col xs="6">
             <Form>
@@ -48,7 +57,9 @@ export default class show_data_test extends Component {
               <Row form>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="Indetification">หมายเลขบัตรประจำตัวประชาชน</Label>
+                    <Label for="Indetification">
+                      หมายเลขบัตรประจำตัวประชาชน
+                    </Label>
                     <Input
                       type="text"
                       name="address"

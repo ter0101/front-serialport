@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 import '../../../App.css'
 
-export default class scanqr extends Component {
+export default class magneticcard extends Component {
   render() {
     return (
       <div>
-         <h1 className="title">scan QR</h1>
+         <h1 className="title">magnetic card</h1>
       </div>
     )
   }
