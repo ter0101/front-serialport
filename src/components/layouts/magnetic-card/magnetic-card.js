@@ -11,7 +11,7 @@ export default class magneticcard extends Component {
     this.state = {
       text64: ''
     }
-    setTimeout(this.getDataFromServer, 4500)
+    // setTimeout(this.getDataFromServer, 4500)
   }
 
   writeDataToDevice = e => {
@@ -35,8 +35,12 @@ export default class magneticcard extends Component {
 
   render() {
     const { text64 } = this.state
-    const cardNumberArr = text64.split('data: ')
-    const cardNumber = cardNumberArr[0]
+    // const cardNumberArr = text64.split('data')
+    const cardNumber = text64.replace(/\D/g, '');
+
+
+    console.log(cardNumber)
+    // const cardNumber = cardNumberArr[0]
     return (
       <div>
         <h1 className="title">magnetic card</h1>
@@ -46,7 +50,7 @@ export default class magneticcard extends Component {
               {cardNumber !== '' ? (
                 <div>
                   <span className="qrcode">เลขบัตร:&nbsp;&nbsp;&nbsp;</span>
-                  <span className="qrcode-text">{cardNumber}</span>
+                  <span className="qrcode-text"  value={cardNumber}></span>
                   <Button
                     size="sm"
                     className="button-scan-qr"
