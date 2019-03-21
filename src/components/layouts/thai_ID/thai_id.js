@@ -17,6 +17,22 @@ export default class show_data_test extends Component {
     setTimeout(this.getDataFromServer, 13000)
   }
 
+  state = {
+    command: ''
+  }
+
+  writeDataToDevice = e => {
+    e.preventDefault()
+    this.setState({ command: e.currentTarget.value })
+    const command = {
+      text: e.currentTarget.value
+    }
+    axios.post('/api/write', command).then(respones => {
+      console.log(respones)
+    })
+    console.log('COMMAND:', command.text)
+  }
+
   getDataFromServer = () => {
     console.log('GET data from server')
     axios.get('/api/getData').then(result => {
@@ -42,9 +58,19 @@ export default class show_data_test extends Component {
             ) : (
               <img className="img-thaiid" src={defaultImg} alt="img" />
             )}
-            <div>
+            <div className="show-button">
               <Button
-                className="card-button button-read"
+                size="sm"
+                className="button-reload"
+                onClick={this.writeDataToDevice}
+                value="a04"
+              >
+                เปิด ThaiID
+              </Button>
+
+              <Button
+                size="sm"
+                className="button-read"
                 onClick={this.getDataFromServer}
               >
                 อ่านข้อมูล

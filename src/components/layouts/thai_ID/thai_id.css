@@ -6,7 +6,30 @@
   margin-right: auto;
 }
 
+.show-button {
+  display: flex;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 label {
   color: #4a4a4a !important;
 }
 
+.button-read {
+  width: 80%;
+  margin-left: 20px;
+  background-color: #7ed321 !important;
+  border-color: #7ed321 !important;
+  margin-top: 10px;
+  font-size: 18px !important;
+}
+
+.button-reload {
+  width: 80%;
+  margin-right: 20px;
+  background-color: #E66549 !important;
+  border-color: #E66549 !important;
+  margin-top: 10px;
+  font-size: 18px !important;
+}
