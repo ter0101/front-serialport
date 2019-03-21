@@ -34,6 +34,7 @@ export default class show_data_test extends Component {
   }
 
   getDataFromServer = () => {
+    this.setState(this.state)
     console.log('GET data from server')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)
