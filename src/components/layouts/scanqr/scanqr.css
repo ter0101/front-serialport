@@ -1,0 +1,26 @@
+.group-qrdata {
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.qrcode {
+  color: #4a4a4a !important;
+  font-weight: 600;
+}
+
+.qrcode-text {
+  color: #4a4a4a !important;
+}
+
+.button-read-qr {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+}
+
+.button-scan-qr {
+    position: absolute;
+    right: 90px;
+    top: 9px;
+  }

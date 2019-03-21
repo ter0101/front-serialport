@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import { Row, Col, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 import defaultImg from '../../../asset/picture.png'
 import '../../../App.css'
