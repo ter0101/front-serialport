@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import './thai_id.css'
 import '../../../App.css'
-import { Alert, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 import defaultImg from '../../../asset/user.png'
 
 export default class show_data_test extends Component {
@@ -11,7 +11,6 @@ export default class show_data_test extends Component {
     super(props)
 
     this.state = {
-      data:'',
       img64: '',
       text64: ''
     }
@@ -19,8 +18,7 @@ export default class show_data_test extends Component {
   }
 
   getDataFromServer = () => {
-    this.setState({data:''})
-    console.log('run')
+    console.log('GET data from server')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)
       this.setState({ img64: result.data.img64, text64: result.data.text64 })
@@ -28,14 +26,14 @@ export default class show_data_test extends Component {
   }
 
   render() {
-    const { data,img64, text64 } = this.state
+    const { img64, text64 } = this.state
     const Img = 'data:image/png;base64,' + img64
     const Text = Buffer.from(text64, 'base64').toString()
     var TextArray = Text.split(':')
 
     return (
       <div>
-        <h1 className="title">Thai ID{data}</h1>
+        <h1 className="title">Thai ID</h1>
         <Row>
           <Col xs="6">
             {img64 !== '' ? (
