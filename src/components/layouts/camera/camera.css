@@ -1,5 +1,6 @@
 .camera-img {
   margin: auto;
+  margin-top: 20px !important;
 }
 
 .button-group {
@@ -26,4 +27,3 @@
   background-color: #7ed321 !important;
   border-color: #7ed321 !important;
 }
-
