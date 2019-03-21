@@ -48,7 +48,7 @@ export default class show_data_test extends Component {
               <Row form>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="Indetification">Indetification Number</Label>
+                    <Label for="Indetification">หมายเลขบัตรประจำตัวประชาชน</Label>
                     <Input
                       type="text"
                       name="address"
@@ -60,7 +60,7 @@ export default class show_data_test extends Component {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="Birth">Date of Birth</Label>
+                    <Label for="Birth">เกิดวันที่ </Label>
                     <Input
                       type="text"
                       name="Birth"
@@ -73,7 +73,7 @@ export default class show_data_test extends Component {
               </Row>
               {/* -----------Name---------- */}
               <FormGroup>
-                <Label for="firstNmarThai">ชื่อ-นามสกุล(ภาษาไทย)</Label>
+                <Label for="firstNmarThai">ชื่อ-นามสกุล (ภาษาไทย)</Label>
                 <Input
                   type="text"
                   name="firstNmarThai"
@@ -83,7 +83,7 @@ export default class show_data_test extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="firstNmarEng">Name (English)</Label>
+                <Label for="firstNmarEng">ชื่อ-นามสกุล (English)</Label>
                 <Input
                   type="text"
                   name="firstNmarEng"
@@ -108,7 +108,7 @@ export default class show_data_test extends Component {
                 {/* -----------Issue---------- */}
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="Expiry">Date of Issue</Label>
+                    <Label for="Expiry">วันออกบัตร</Label>
                     <Input
                       type="text"
                       name="Expiry"
@@ -121,7 +121,7 @@ export default class show_data_test extends Component {
                 {/* -----------Expiry---------- */}
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="Expiry">Date of Expiry</Label>
+                    <Label for="Expiry">วันหมดอายุ</Label>
                     <Input
                       type="text"
                       name="Expiry"
