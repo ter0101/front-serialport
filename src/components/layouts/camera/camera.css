@@ -1,5 +1,29 @@
-.camera-img{
-    margin: auto;
-    width: 50%;
-    height: auto;
+.camera-img {
+  margin: auto;
 }
+
+.button-group {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.open-camera,
+.read-camera,
+.take-camera {
+  margin-right: 10px;
+  width: 25%;
+  font-size: 16px !important;
+}
+
+.take-camera:hover {
+  background-color: #e66549 !important;
+  border-color: #e66549 !important;
+}
+
+.read-camera {
+  background-color: #7ed321 !important;
+  border-color: #7ed321 !important;
+}
+
