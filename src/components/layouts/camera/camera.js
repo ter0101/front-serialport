@@ -64,7 +64,7 @@ export default class camera extends Component {
             onClick={this.getDataFromServer}
             value="a02"
           >
-            อ่านข้อมูล
+            รับข้อมูล
           </Button>
         </div>
         {img64 !== '' ? (

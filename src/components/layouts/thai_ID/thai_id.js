@@ -73,7 +73,7 @@ export default class show_data_test extends Component {
                 className="button-read"
                 onClick={this.getDataFromServer}
               >
-                อ่านข้อมูล
+                รับข้อมูล
               </Button>
             </div>
           </Col>

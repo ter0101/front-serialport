@@ -17,10 +17,12 @@
   position: absolute;
   right: 10px;
   top: 9px;
+  background-color: #7ed321 !important;
+  border-color: #7ed321 !important;
 }
 
 .button-scan-qr {
-    position: absolute;
-    right: 90px;
-    top: 9px;
-  }
+  position: absolute;
+  right: 90px;
+  top: 9px;
+}

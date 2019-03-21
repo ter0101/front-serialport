@@ -56,7 +56,6 @@ export default class scanqr extends Component {
                   </Button>
                   <Button
                     size="sm"
-                    color="danger"
                     className="button-read-qr"
                     onClick={this.getDataFromServer}
                   >
@@ -77,7 +76,6 @@ export default class scanqr extends Component {
                   </Button>
                   <Button
                     size="sm"
-                    color="danger"
                     className="button-read-qr"
                     onClick={this.getDataFromServer}
                   >
