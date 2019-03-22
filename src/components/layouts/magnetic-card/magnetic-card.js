@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import { ListGroup, ListGroupItem, Button } from 'reactstrap'
 import '../../../App.css'
-
+import './magnetic-card.css'
 export default class magneticcard extends Component {
   constructor(props) {
     super(props)
@@ -46,7 +46,7 @@ export default class magneticcard extends Component {
     return (
       <div>
         <h1 className="title">magnetic card</h1>
-        <div className="group-qrdata">
+        <div className="group-manetci">
           <ListGroup>
             <ListGroupItem>
               {cardNumber !== '' ? (
