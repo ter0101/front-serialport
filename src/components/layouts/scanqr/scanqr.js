@@ -10,8 +10,11 @@ export default class scanqr extends Component {
     super(props)
 
     this.state = {
-      qrcode:
-        '00020101021153037645802TH29370016A000000677010111011300668992352205406112.00630404E7'
+      qrcode: '',
+      allTag: [],
+      SerialNum: [],
+      money: '',
+      refNumber: ''
     }
     // setTimeout(this.getDataFromServer, 4500)
   }
@@ -22,7 +25,6 @@ export default class scanqr extends Component {
       text: e.currentTarget.value
     }
     axios.post('/api/write', command).then(respones => {
-      console.log(respones)
     })
     console.log('COMMAND:', command.text)
   }
@@ -30,20 +32,30 @@ export default class scanqr extends Component {
   decodeTags = tags => {
     var j = 0
     while (j < tags.length) {
-      if(tags[j].tag === '29'){
-        console.log(tags[j].value)
+      if (tags[j].tag === '29') {
+        var str = tags[j].value;
+        var tags = [];
+        var i = 0;
+        while (i < str.length) {
+          var tag = str.substring(i, i + 2);
+          i += 2;
+          var valueLength = Number(str.substring(i, i + 2));
+          i += 2;
+          var value = str.substring(i, i + valueLength);
+          i += valueLength;
+          tags.push({ tag: tag, value: value });
+        }
+        this.setState({ SerialNum: tags })
+        break
       }
       j++
     }
+
   }
 
+
   decodeQR = qrcode => {
-    // var headerLength = 6 // assuming header length is always 6
-    // var header = qrcode.substring(0, 6)
-
     var tags = []
-
-    // start after header
     var i = 6
     while (i < qrcode.length) {
       var tag = qrcode.substring(i, i + 2)
@@ -54,8 +66,7 @@ export default class scanqr extends Component {
       i += valueLength
       tags.push({ tag: tag, value: value })
     }
-    console.log(tags)
-
+    this.setState({ allTag: tags })
     if (i >= qrcode.length) {
       this.decodeTags(tags)
     }
@@ -65,15 +76,18 @@ export default class scanqr extends Component {
     console.log('GET data from server')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)
-      this.setState({ qrcode: result.data.img64 })
+      this.setState({ qrcode: "00020101021153037645802TH29370016A000000677010111011300668992352205406112.00630404E7" })
+    }).then(() => {
+      this.decodeQR(this.state.qrcode)
     })
   }
 
   render() {
-    const { qrcode } = this.state
+    const { qrcode, allTag, SerialNum } = this.state
+    console.log('ALL TAG:', allTag)
+    console.log('ALL TAG:', SerialNum)
     return (
       <div>
-        {this.decodeQR(qrcode)}
         <h1 className="title">scan QR</h1>
         <div className="group-qrdata">
           <ListGroup>
@@ -99,26 +113,26 @@ export default class scanqr extends Component {
                   </Button>
                 </div>
               ) : (
-                <div>
-                  <span className="qrcode">QR Code:&nbsp;&nbsp;&nbsp;</span>
-                  <span className="qrcode-text">ไม่มีข้อมูล</span>
-                  <Button
-                    size="sm"
-                    className="button-scan-qr"
-                    onClick={this.writeDataToDevice}
-                    value="a03"
-                  >
-                    scan QR
+                  <div>
+                    <span className="qrcode">QR Code:&nbsp;&nbsp;&nbsp;</span>
+                    <span className="qrcode-text">ไม่มีข้อมูล</span>
+                    <Button
+                      size="sm"
+                      className="button-scan-qr"
+                      onClick={this.writeDataToDevice}
+                      value="a03"
+                    >
+                      scan QR
                   </Button>
-                  <Button
-                    size="sm"
-                    className="button-read-qr"
-                    onClick={this.getDataFromServer}
-                  >
-                    รับข้อมูล
+                    <Button
+                      size="sm"
+                      className="button-read-qr"
+                      onClick={this.getDataFromServer}
+                    >
+                      รับข้อมูล
                   </Button>
-                </div>
-              )}
+                  </div>
+                )}
             </ListGroupItem>
           </ListGroup>
         </div>
