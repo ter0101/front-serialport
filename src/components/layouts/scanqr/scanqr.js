@@ -10,9 +10,10 @@ export default class scanqr extends Component {
     super(props)
 
     this.state = {
-      qrcode: ''
+      qrcode:
+        '00020101021153037645802TH29370016A000000677010111011300668992352205406112.00630404E7'
     }
-    setTimeout(this.getDataFromServer, 4500)
+    // setTimeout(this.getDataFromServer, 4500)
   }
 
   writeDataToDevice = e => {
@@ -24,6 +25,40 @@ export default class scanqr extends Component {
       console.log(respones)
     })
     console.log('COMMAND:', command.text)
+  }
+
+  decodeTags = tags => {
+    var j = 0
+    while (j < tags.length) {
+      if(tags[j].tag === '29'){
+        console.log(tags[j].value)
+      }
+      j++
+    }
+  }
+
+  decodeQR = qrcode => {
+    // var headerLength = 6 // assuming header length is always 6
+    // var header = qrcode.substring(0, 6)
+
+    var tags = []
+
+    // start after header
+    var i = 6
+    while (i < qrcode.length) {
+      var tag = qrcode.substring(i, i + 2)
+      i += 2
+      var valueLength = Number(qrcode.substring(i, i + 2))
+      i += 2
+      var value = qrcode.substring(i, i + valueLength)
+      i += valueLength
+      tags.push({ tag: tag, value: value })
+    }
+    console.log(tags)
+
+    if (i >= qrcode.length) {
+      this.decodeTags(tags)
+    }
   }
 
   getDataFromServer = () => {
@@ -38,6 +73,7 @@ export default class scanqr extends Component {
     const { qrcode } = this.state
     return (
       <div>
+        {this.decodeQR(qrcode)}
         <h1 className="title">scan QR</h1>
         <div className="group-qrdata">
           <ListGroup>
