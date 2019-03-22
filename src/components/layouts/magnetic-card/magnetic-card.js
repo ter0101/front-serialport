@@ -37,10 +37,12 @@ export default class magneticcard extends Component {
     const { text64 } = this.state
     // const cardNumberArr = text64.split('data')
     const cardNumber = text64.replace(/\D/g, '');
-
-
-    console.log(cardNumber)
+    
+    console.log(cardNumber.substr(0, 16))
+    const cardNumbers = cardNumber.substr(0, 16)
     // const cardNumber = cardNumberArr[0]
+
+    
     return (
       <div>
         <h1 className="title">magnetic card</h1>
@@ -50,7 +52,7 @@ export default class magneticcard extends Component {
               {cardNumber !== '' ? (
                 <div>
                   <span className="qrcode">เลขบัตร:&nbsp;&nbsp;&nbsp;</span>
-                  <span className="qrcode-text"  value={cardNumber}></span>
+                  <span className="qrcode-text">{cardNumbers}</span>
                   <Button
                     size="sm"
                     className="button-scan-qr"
