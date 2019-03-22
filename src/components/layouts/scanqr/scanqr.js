@@ -89,6 +89,7 @@ export default class scanqr extends Component {
     return (
       <div>
         <h1 className="title">scan QR</h1>
+
         <div className="group-qrdata">
           <ListGroup>
             <ListGroupItem>
@@ -136,6 +137,12 @@ export default class scanqr extends Component {
             </ListGroupItem>
           </ListGroup>
         </div>
+        {SerialNum.map(data => (<p key={data.tag}>{data.value}</p>))}
+        {allTag.map(data => (
+          <p key={data.tag}>
+          {data.tag === '29' ? '' : data.value}
+          </p>
+        ))}
       </div>
     )
   }
