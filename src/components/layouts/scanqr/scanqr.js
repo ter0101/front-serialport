@@ -76,8 +76,7 @@ export default class scanqr extends Component {
       .then(result => {
         console.log('DATA:', result.data)
         this.setState({
-          qrcode:
-            '00020101021153037645802TH29370016A000000677010111011300668992352205406112.00630404E7'
+          qrcode: result.data.img64
         })
       })
       .then(() => {
