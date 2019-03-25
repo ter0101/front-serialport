@@ -24,7 +24,7 @@ export default class scanqr extends Component {
     const command = {
       text: e.currentTarget.value
     }
-    axios.post('/api/write', command).then(respones => {})
+    axios.post('/api/write', command).then(respones => { })
     console.log('COMMAND:', command.text)
   }
 
@@ -34,6 +34,7 @@ export default class scanqr extends Component {
       if (tags[j].tag === '29') {
         var str = tags[j].value
         var i = 0
+        var tags = []
         while (i < str.length) {
           var tag = str.substring(i, i + 2)
           i += 2
@@ -115,26 +116,26 @@ export default class scanqr extends Component {
                   </Button>
                 </div>
               ) : (
-                <div>
-                  <span className="qrcode">QR Code:&nbsp;&nbsp;&nbsp;</span>
-                  <span className="qrcode-text">ไม่มีข้อมูล</span>
-                  <Button
-                    size="sm"
-                    className="button-scan-qr"
-                    onClick={this.writeDataToDevice}
-                    value="a03"
-                  >
-                    scan QR
+                  <div>
+                    <span className="qrcode">QR Code:&nbsp;&nbsp;&nbsp;</span>
+                    <span className="qrcode-text">ไม่มีข้อมูล</span>
+                    <Button
+                      size="sm"
+                      className="button-scan-qr"
+                      onClick={this.writeDataToDevice}
+                      value="a03"
+                    >
+                      scan QR
                   </Button>
-                  <Button
-                    size="sm"
-                    className="button-read-qr"
-                    onClick={this.getDataFromServer}
-                  >
-                    รับข้อมูล
+                    <Button
+                      size="sm"
+                      className="button-read-qr"
+                      onClick={this.getDataFromServer}
+                    >
+                      รับข้อมูล
                   </Button>
-                </div>
-              )}
+                  </div>
+                )}
             </ListGroupItem>
           </ListGroup>
         </div>
@@ -163,8 +164,8 @@ export default class scanqr extends Component {
                         ))}
                       </div>
                     ) : (
-                      data.value
-                    )}
+                        data.value
+                      )}
                   </td>
                 </tr>
               ))}

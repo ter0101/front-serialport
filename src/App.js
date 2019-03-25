@@ -15,7 +15,8 @@ class App extends Component {
     super(props)
     this.state = {
       img64: '',
-      text64: ''
+      text64: '',
+      error: false
     }
   }
 
@@ -32,8 +33,18 @@ class App extends Component {
     console.log('GET data from server')
     axios.get('/api/getData').then(result => {
       console.log('DATA:', result.data)
-      this.setState({ img64: result.data.img64, text64: result.data.text64 })
+      if (result.data.img64 !== '' && result.data.text64 !== '') {
+        this.setState({ img64: result.data.img64, text64: result.data.text64 })
+      } else {
+        this.togleError()
+      }
     })
+  }
+
+  togleError = () => {
+    this.setState({
+      error: !this.state.error,
+    });
   }
 
   render() {
@@ -51,6 +62,7 @@ class App extends Component {
                   state={this.state}
                   writeDataToDevice={this.writeDataToDevice}
                   getDataFromServer={this.getDataFromServer}
+                  togleError={this.togleError}
                 />
               )}
             />

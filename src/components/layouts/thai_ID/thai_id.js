@@ -2,39 +2,75 @@ import React, { Component } from 'react'
 
 import './thai_id.css'
 import '../../../App.css'
-import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Row, Col, Form, FormGroup, Label, Input, Button, Spinner, Modal, ModalBody, Alert, ModalHeader, ModalFooter } from 'reactstrap'
 import defaultImg from '../../../asset/user.png'
 
 export default class show_data_test extends Component {
-  componentDidMount() {
-    this.writeDataToDevice('a04')
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
   }
 
   writeDataToDevice = () => {
     this.props.writeDataToDevice('a04')
+    this.toggle()
+    setTimeout(this.getDataFromServer, 14000)
   }
 
   getDataFromServer = () => {
     this.props.getDataFromServer()
+    this.setState(prevState => ({
+      modal: false
+    }));
+  }
+
+  togleError = () => {
+    this.props.togleError()
+  }
+
+  toggle = () => {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {
-    const { img64, text64 } = this.props.state
+    const { img64, text64, error } = this.props.state
     const Img = 'data:image/png;base64,' + img64
     const Text = Buffer.from(text64, 'base64').toString()
     const TextArray = Text.split(':')
 
     return (
+
       <div>
+
         <h1 className="title">Thai ID</h1>
         <br />
+        <Modal isOpen={this.state.modal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
+        >
+          <ModalBody ><Spinner size="sm" color="primary" /> กำลังอ่านข้อมูล
+          </ModalBody>
+        </Modal>
+        <Modal isOpen={error} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
+        ><ModalHeader >ERROR</ModalHeader>
+          <ModalBody >เกิดข้อผิดพลาดระหว่างอ่านข้อมูล  กรุณาเสียบบัตรประจำตัวประชาชน
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={this.togleError}>ตกลง</Button>
+          </ModalFooter>
+        </Modal>
+        <Alert color="danger" isOpen={this.state.alert}>
+          กรุณาเสียบบัตรประจำตัวประชาชน
+        </Alert>
         <Row>
           <Col xs="6" style={{ textAlign: 'center' }}>
             {img64 !== '' ? (
               <img className="img-thaiid" src={Img} alt="img" />
             ) : (
-              <img className="img-thaiid" src={defaultImg} alt="img" />
-            )}
+                <img className="img-thaiid" src={defaultImg} alt="img" />
+              )}
             <div className="show-button">
               <Button
                 size="sm"
@@ -153,3 +189,4 @@ export default class show_data_test extends Component {
     )
   }
 }
+

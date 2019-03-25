@@ -9,11 +9,18 @@ import camera from '../../../asset/photo-camera.png'
 import scanqr from '../../../asset/qr-code-scan.png'
 import card from '../../../asset/card.png'
 
+
+
+
 export default class home extends Component {
+
+
   render() {
     return (
+
+      
       <div>
-        <h1 className="title">Manu Lists</h1>
+        <h1 className="title">Menu Lists</h1>
         <CardGroup>
           <Card body outline color="white" className="card-click">
             <CardImg top width="100%" src={cardId} alt="Card image cap" />
