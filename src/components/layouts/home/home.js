@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Card, Button, CardImg, CardGroup } from 'reactstrap'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import { NavLink } from 'react-router-dom'
+import { Card, CardImg, CardGroup } from 'reactstrap'
 
 import './home.css'
 import '../../../App.css'
@@ -11,86 +10,34 @@ import scanqr from '../../../asset/qr-code-scan.png'
 import card from '../../../asset/card.png'
 
 export default class home extends Component {
-  state = {
-    redirect: false,
-    command: ''
-  }
-
-  writeDataToDevice = e => {
-    e.preventDefault()
-    this.setState({ redirect: true, command: e.currentTarget.value })
-    const command = {
-      text: e.currentTarget.value
-    }
-    axios.post('/api/write', command).then(respones => {
-      console.log(respones)
-    })
-    console.log('COMMAND:', command.text)
-  }
-
-  renderRedirect = () => {
-    const { redirect, command } = this.state
-    if (redirect && command === 'a04') {
-      return <Redirect to="/thai-id" />
-    }
-    if (redirect && command === 'a01') {
-      return <Redirect to="/camera" />
-    }
-    if (redirect && command === 'a03') {
-      return <Redirect to="/scan-qr" />
-    }
-    if (redirect && command === 'a10') {
-      return <Redirect to="/magnetic-card" />
-    }
-  }
-
   render() {
     return (
       <div>
         <h1 className="title">Manu Lists</h1>
         <CardGroup>
-          {this.renderRedirect()}
           <Card body outline color="white" className="card-click">
             <CardImg top width="100%" src={cardId} alt="Card image cap" />
-            <Button
-              className="card-button"
-              onClick={this.writeDataToDevice}
-              value="a04"
-            >
+            <NavLink to="/thai-id" className="card-button btn btn-secondary">
               Thai ID
-            </Button>
+            </NavLink>
           </Card>
           <Card body outline color="white">
             <CardImg top width="100%" src={camera} alt="Card image cap" />
-            <Button
-              className="card-button"
-              onClick={this.writeDataToDevice}
-              value="a01"
-            >
+            <NavLink to="/camera" className="card-button btn btn-secondary">
               Camera
-            </Button>
+            </NavLink>
           </Card>
           <Card body outline color="white">
             <CardImg top width="100%" src={scanqr} alt="Card image cap" />
-            <Button
-              className="card-button"
-              color="success"
-              onClick={this.writeDataToDevice}
-              value="a03"
-            >
+            <NavLink to="/scan-qr" className="card-button btn btn-secondary">
               Scan QR
-            </Button>
+            </NavLink>
           </Card>
           <Card body outline color="white">
             <CardImg top width="100%" src={card} alt="Card image cap" />
-            <Button
-              className="card-button"
-              color="success"
-              onClick={this.writeDataToDevice}
-              value="a10"
-            >
+          <NavLink to="/magnetic-card" className="card-button btn btn-secondary">
               Magnetic Card
-            </Button>
+            </NavLink>
           </Card>
         </CardGroup>
       </div>

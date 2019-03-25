@@ -33,7 +33,6 @@ export default class scanqr extends Component {
     while (j < tags.length) {
       if (tags[j].tag === '29') {
         var str = tags[j].value
-        var tags = []
         var i = 0
         while (i < str.length) {
           var tag = str.substring(i, i + 2)

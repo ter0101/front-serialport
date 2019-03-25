@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 import './thai_id.css'
 import '../../../App.css'
@@ -7,45 +6,23 @@ import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import defaultImg from '../../../asset/user.png'
 
 export default class show_data_test extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      img64: '',
-      text64: ''
-    }
-    setTimeout(this.getDataFromServer, 13000)
+  componentDidMount() {
+    this.writeDataToDevice('a04')
   }
 
-  state = {
-    command: ''
-  }
-
-  writeDataToDevice = e => {
-    e.preventDefault()
-    this.setState({ command: e.currentTarget.value })
-    const command = {
-      text: e.currentTarget.value
-    }
-    axios.post('/api/write', command).then(respones => {
-      console.log(respones)
-    })
-    console.log('COMMAND:', command.text)
+  writeDataToDevice = () => {
+    this.props.writeDataToDevice('a04')
   }
 
   getDataFromServer = () => {
-    console.log('GET data from server')
-    axios.get('/api/getData').then(result => {
-      console.log('DATA:', result.data)
-      this.setState({ img64: result.data.img64, text64: result.data.text64 })
-    })
+    this.props.getDataFromServer()
   }
 
   render() {
-    const { img64, text64 } = this.state
+    const { img64, text64 } = this.props.state
     const Img = 'data:image/png;base64,' + img64
     const Text = Buffer.from(text64, 'base64').toString()
-    var TextArray = Text.split(':')
+    const TextArray = Text.split(':')
 
     return (
       <div>
@@ -63,7 +40,6 @@ export default class show_data_test extends Component {
                 size="sm"
                 className="button-reload"
                 onClick={this.writeDataToDevice}
-                value="a04"
               >
                 เปิด ThaiID
               </Button>
